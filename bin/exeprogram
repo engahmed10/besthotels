@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/besthotels.rb" 
+
+
+#Besthotels::CLI.new.call
+Besthotels::HOTELS.all
+
+binding.pry
