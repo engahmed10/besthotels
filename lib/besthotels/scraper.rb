@@ -1,18 +1,18 @@
 class Besthotels::SCRAPER
 
-    SITE = "https://www.tripadvisor.com/TravelersChoice-Hotels"
+    #SITE = "https://www.tripadvisor.com/TravelersChoice-Hotels"
     
 
 
-    def scraper_website 
-         doc = Nokogiri::HTML(open(SITE))
-    end
+   # def scraper_website 
+    #     doc = Nokogiri::HTML(open(SITE))
+    #end
 
 
     def self.makehotel
 
-
-          doc = Nokogiri::HTML(open(SITE))
+       site = "https://www.tripadvisor.com/TravelersChoice-Hotels"
+          doc = Nokogiri::HTML(open(site))
           beaches= doc.css("#WINNERVIEWER div.winnerLayer")
           hash=beaches.map do |i|
     

@@ -4,4 +4,4 @@ class  Besthotels::CLI
       puts "Hello Ahmed"  
     end
     
-  end
+end

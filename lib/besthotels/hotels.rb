@@ -1,4 +1,6 @@
+
 class Besthotels::HOTELS
+   
     @@all =[]
 
     attr_accessor :hotel,:rank,:location,:url
@@ -9,7 +11,7 @@ class Besthotels::HOTELS
 
      
     def self.newhotel(hash)
-       hash.each dexo |hotel|
+       hash.each do |hotel|
         new(hotel)
        end
     end
