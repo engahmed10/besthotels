@@ -1,13 +1,5 @@
 class Besthotels::Scraper
 
-    #SITE = "https://www.tripadvisor.com/TravelersChoice-Hotels"
-    
-
-
-   # def scraper_website 
-    #     doc = Nokogiri::HTML(open(SITE))
-    #end
-
 
     def self.makehotel
 
@@ -32,12 +24,14 @@ class Besthotels::Scraper
 
   def self.eachwebsite
 
-
    Besthotels::Hotels.all.each do |i|
         doc = Nokogiri::HTML(open(i.url))
-        spec = doc.css("div.cPQsENeY").text
-        #assignattribute(attr)
-        i.specific = spec     
+        spec = doc.css("#ABOUT_TAB div.cPQsENeY").text
+        cont = doc.css("a > span.public-business-listing-ContactInfo__nonWebLinkText--nGymU.public-business-listing-ContactInfo__ui_link--1_7Zp.public-business-listing-ContactInfo__level_4--3JgmI").text
+        ameni = doc.css("#BODY_BLOCK_JQUERY_REFLOW div.hotels-hr-about-amenities-Amenity__amenity--3fbBj").text.strip
+        i.specific = spec
+        i.contact =  cont  
+        i.amenities = ameni
    end 
  
   end

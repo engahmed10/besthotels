@@ -3,10 +3,12 @@ class Besthotels::Hotels
    
     @@all =[]
 
-    attr_accessor :hotel,:rank,:location,:url ,:specific
+    attr_accessor :hotel,:rank,:location,:url ,:specific,:contact,:amenities
     def initialize(hotel)
         assignattribute(hotel)
         self.specific = ""
+        self.contact = ""
+        self.amenities = ""
         @@all << self        
     end
 
