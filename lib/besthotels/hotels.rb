@@ -1,5 +1,5 @@
 
-class Besthotels::HOTELS
+class Besthotels::Hotels
    
     @@all =[]
 

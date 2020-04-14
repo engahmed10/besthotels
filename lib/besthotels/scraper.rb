@@ -1,4 +1,4 @@
-class Besthotels::SCRAPER
+class Besthotels::Scraper
 
     #SITE = "https://www.tripadvisor.com/TravelersChoice-Hotels"
     
