@@ -41,7 +41,7 @@ class Besthotels::CLI
       aa= Besthotels::Hotels.all 
       puts "\n\n"
       puts "----------------------------------------------------------------------------------------------------------------------------------------------------"
-      puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Name".colorize(:black)   
+      puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Url".colorize(:black)   
       puts " ---------------------------------------------------------------------------------------------------------------------------------------------------"       
         aa.each_with_index do |value,i|
           puts "#{i+1}. #{value.hotel.upcase}".colorize(:blue) + " | " +  "#{value.location} ".colorize(:green) + " | " +  "#{value.url} ".colorize(:black)    
