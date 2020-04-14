@@ -26,12 +26,13 @@ class Besthotels::Hotels
     end
 
     def self.find_by_rank(rank)
-         @@all.select { |i| 
-                if i.rank == rank
-                    i.specific
-                end   
-            }
+        @@all.select { |i| 
 
+               if  i.rank == rank  
+                  puts i.specific
+               end
+            }
+       
     end
 
     def self.all

@@ -1,9 +1,10 @@
 class Besthotels::CLI 
 
     def self.call
-        puts "Welcome , user"
-        puts "Do you want to see best hotels for 2020,if Yes ,please enter: 'Yes' "
-        puts "if you like to exit ,enter:'exit'"
+        puts "Welcome user"
+        puts "Type 'list' to list  2020 best hotels "
+        puts("To leave, type 'exit'.")
+        puts("What would you like to do?")
         self.menue
      end
   
@@ -11,9 +12,9 @@ class Besthotels::CLI
          user= gets.chomp
         if user == "Yes"
          self.listhotel
-         puts "For more detalis about each hotel ,enter  hotel  rank number  "
-         user= gets.chomp.to_i
-         Besthotels::Hotels.find_by_rank(user)
+         puts " Which hotel would you like to knows more about?:   "
+         user= gets.chomp
+         Besthotels::Hotels.find_by_rank(user)                           
          self.menue 
         elsif user == "exit"
             self.exit
