@@ -13,12 +13,9 @@ class Besthotels::CLI
         if user == "Yes"
          self.listhotel
          puts " Which hotel would you like to knows more about?:   "
-         #user= gets.chomp
-         #individualhotel=Besthotels::Hotels.find_by_rank(user)  
          self.detailhotel(user)                         
          self.menue 
         elsif user.to_i.between?(1,25)
-          #individualhotel=Besthotels::Hotels.find_by_rank(user) 
           self.detailhotel(user)
           self.menue
         elsif user == "exit"
@@ -51,10 +48,8 @@ class Besthotels::CLI
     end
 
     def self.detailhotel(user)
-       #user.to_i.between?(1,25)
-       #user= gets.chomp
-       Besthotels::Hotels.find_by_rank(user).each do |i|
-            
+
+       Besthotels::Hotels.find_by_rank(user).each do |i|           
             puts "\n\n"  
             puts i.hotel
             puts "\n"            
@@ -69,8 +64,7 @@ class Besthotels::CLI
             if i.contact != ""
               puts "Call Us : #{i.contact}".colorize(:blue) 
             end
-            puts "\n\n"
-            
+            puts "\n\n"           
        end
     end
 
