@@ -13,11 +13,13 @@ class Besthotels::CLI
         if user == "Yes"
          self.listhotel
          puts " Which hotel would you like to knows more about?:   "
-         user= gets.chomp
-         Besthotels::Hotels.find_by_rank(user)                            
+         #user= gets.chomp
+         #individualhotel=Besthotels::Hotels.find_by_rank(user)  
+         self.detailhotel(user)                         
          self.menue 
         elsif user.to_i.between?(1,25)
-          Besthotels::Hotels.find_by_rank(user) 
+          #individualhotel=Besthotels::Hotels.find_by_rank(user) 
+          self.detailhotel(user)
           self.menue
         elsif user == "exit"
             self.exit
@@ -46,6 +48,30 @@ class Besthotels::CLI
           puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
         end
         puts "\n\n"
+    end
+
+    def self.detailhotel(user)
+       #user.to_i.between?(1,25)
+       #user= gets.chomp
+       Besthotels::Hotels.find_by_rank(user).each do |i|
+            
+            puts "\n\n"  
+            puts i.hotel
+            puts "\n"            
+            puts "Details".colorize(:blue) 
+            puts "\n"
+            puts i.specific
+            puts "\n\n"
+            puts "Property Amenities".colorize(:blue) 
+            puts "\n"
+            puts i.amenities
+            puts "\n\n"
+            if i.contact != ""
+              puts "Call Us : #{i.contact}".colorize(:blue) 
+            end
+            puts "\n\n"
+            
+       end
     end
 
     

@@ -29,9 +29,9 @@ class Besthotels::Scraper
         spec = doc.css("#ABOUT_TAB div.cPQsENeY").text
         cont = doc.css("a > span.public-business-listing-ContactInfo__nonWebLinkText--nGymU.public-business-listing-ContactInfo__ui_link--1_7Zp.public-business-listing-ContactInfo__level_4--3JgmI").text
         ameni = doc.css("#BODY_BLOCK_JQUERY_REFLOW div.hotels-hr-about-amenities-Amenity__amenity--3fbBj").text.strip
-        i.specific = spec
+        i.specific = spec  
         i.contact =  cont  
-        i.amenities = ameni
+        i.amenities = ameni  
    end 
  
   end
