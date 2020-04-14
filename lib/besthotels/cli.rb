@@ -11,10 +11,9 @@ class Besthotels::CLI
          user= gets.chomp
         if user == "Yes"
          self.listhotel
-         
-         
-         puts "For more detalis about each hotel ,enter  hotel  ranke number  "
-        
+         puts "For more detalis about each hotel ,enter  hotel  rank number  "
+         user= gets.chomp.to_i
+         Besthotels::Hotels.find_by_rank(user)
          self.menue 
         elsif user == "exit"
             self.exit
@@ -25,13 +24,13 @@ class Besthotels::CLI
      end
   
      def  self.exit
-         "See You"
-     end
-  
+      "See You"
+    end
+
      def self.invalid
-        puts"invalid input ,please enter valid option"
-        self.menue
-     end
+         puts"invalid input ,please enter valid option"
+          self.menue
+      end
   
      def self.listhotel
       aa= Besthotels::Hotels.all 
@@ -40,12 +39,12 @@ class Besthotels::CLI
       puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Name".colorize(:black)   
       puts " ---------------------------------------------------------------------------------------------------------------------------------------------------"       
         aa.each_with_index do |value,i|
-          puts "#{i+1}. #{value.hotel}".colorize(:blue) + " | " +  "#{value.location} ".colorize(:green) + " | " +  "#{value.url} ".colorize(:black)    
+          puts "#{i+1}. #{value.hotel.upcase}".colorize(:blue) + " | " +  "#{value.location} ".colorize(:green) + " | " +  "#{value.url} ".colorize(:black)    
           puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
-          puts "#{value.specific}"
         end
         puts "\n\n"
     end
+
     
   
   
