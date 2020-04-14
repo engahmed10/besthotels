@@ -14,13 +14,15 @@ class Besthotels::CLI
          self.listhotel
          puts " Which hotel would you like to knows more about?:   "
          user= gets.chomp
-         Besthotels::Hotels.find_by_rank(user)                           
+         Besthotels::Hotels.find_by_rank(user)                            
          self.menue 
+        elsif user.between?(1,25)
+          Besthotels::Hotels.find_by_rank(user) 
+          self.menue
         elsif user == "exit"
             self.exit
         else
-          self.invalid
-          
+          self.invalid       
         end
      end
   

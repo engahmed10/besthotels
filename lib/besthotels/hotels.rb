@@ -6,9 +6,9 @@ class Besthotels::Hotels
     attr_accessor :hotel,:rank,:location,:url ,:specific,:contact,:amenities
     def initialize(hotel)
         assignattribute(hotel)
-        self.specific = ""
-        self.contact = ""
-        self.amenities = ""
+       # self.specific = ""
+       # self.contact = ""
+       # self.amenities = ""
         @@all << self        
     end
 
