@@ -2,8 +2,8 @@
 
 require_relative "../lib/besthotels" 
 
-
-Besthotels::CLI.new.call
+Besthotels::Scraper.makehotel
+Besthotels::CLI.call
 #Besthotels::Hotels.all
 
 #binding.pry
