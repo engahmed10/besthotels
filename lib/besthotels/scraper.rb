@@ -30,4 +30,17 @@ class Besthotels::Scraper
 
   end
 
+  def self.eachwebsite
+   Besthotels::Hotels.all do |i|
+         web= i.url
+        # doc = Nokogiri::HTML(open(web))
+      
+      binding.pry
+      
+   end   
+  end
+
+
 end
+
+
