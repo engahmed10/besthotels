@@ -16,7 +16,7 @@ class Besthotels::CLI
          user= gets.chomp
          Besthotels::Hotels.find_by_rank(user)                            
          self.menue 
-        elsif user.between?(1,25)
+        elsif user.to_i.between?(1,25)
           Besthotels::Hotels.find_by_rank(user) 
           self.menue
         elsif user == "exit"
