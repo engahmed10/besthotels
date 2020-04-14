@@ -31,13 +31,15 @@ class Besthotels::Scraper
   end
 
   def self.eachwebsite
-   Besthotels::Hotels.all do |i|
-         web= i.url
-        # doc = Nokogiri::HTML(open(web))
-      
-      binding.pry
-      
-   end   
+
+
+   Besthotels::Hotels.all.each do |i|
+        doc = Nokogiri::HTML(open(i.url))
+        spec = doc.css("div.cPQsENeY").text
+        #assignattribute(attr)
+        i.specific = spec     
+   end 
+ 
   end
 
 

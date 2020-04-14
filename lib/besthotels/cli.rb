@@ -42,7 +42,7 @@ class Besthotels::CLI
         aa.each_with_index do |value,i|
           puts "#{i+1}. #{value.hotel}".colorize(:blue) + " | " +  "#{value.location} ".colorize(:green) + " | " +  "#{value.url} ".colorize(:black)    
           puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
-        
+          puts "#{value.specific}"
         end
         puts "\n\n"
     end
