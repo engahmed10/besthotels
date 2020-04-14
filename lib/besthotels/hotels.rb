@@ -30,6 +30,10 @@ class Besthotels::Hotels
 
                if  i.rank == rank  
                   puts i.specific
+                  puts "------"
+                  puts i.contact
+                  puts "-------"
+                  puts i.amenities
                end
             }
        
