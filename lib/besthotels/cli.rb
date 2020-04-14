@@ -12,11 +12,9 @@ class Besthotels::CLI
         if user == "Yes"
          self.listhotel
          
-         #binding.pry
          
-         puts "There is a list "
-         puts "for more detalis about each hotel ,choose the number from 1 to 25"
-         
+         puts "For more detalis about each hotel ,enter  hotel  ranke number  "
+        
          self.menue 
         elsif user == "exit"
             self.exit
@@ -36,10 +34,17 @@ class Besthotels::CLI
      end
   
      def self.listhotel
-      aa= Besthotels::Hotels.all          
+      aa= Besthotels::Hotels.all 
+      puts "\n\n"
+      puts "----------------------------------------------------------------------------------------------------------------------------------------------------"
+      puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Name".colorize(:black)   
+      puts " ---------------------------------------------------------------------------------------------------------------------------------------------------"       
         aa.each_with_index do |value,i|
-          puts "#{i+1}. #{value.hotel}.      #{value.location} "
+          puts "#{i+1}. #{value.hotel}".colorize(:blue) + " | " +  "#{value.location} ".colorize(:green) + " | " +  "#{value.url} ".colorize(:black)    
+          puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
+        
         end
+        puts "\n\n"
     end
     
   

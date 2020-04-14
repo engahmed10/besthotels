@@ -5,6 +5,8 @@ require_relative "./besthotels/version"
 require_relative "./besthotels/cli"
 require_relative "./besthotels/scraper"
 require_relative "./besthotels/hotels"
+require 'colorized_string'
+require 'colorize'
 
 
 module Besthotels
