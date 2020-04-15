@@ -3,7 +3,7 @@ class Besthotels::Hotels
    
     @@all =[]
 
-    attr_accessor :hotel,:rank,:location,:url ,:specific,:contact,:amenities
+    attr_accessor :hotel,:rank,:location,:url,:quotes ,:specific,:contact,:amenities 
     def initialize(hotel)
         assignattribute(hotel)
        # self.specific = ""
@@ -13,9 +13,10 @@ class Besthotels::Hotels
     end
 
      
-    def self.newhotel(hash)
-       hash.each do |hotel|
-        new(hotel)
+    def self.new_hotel(arrhash)
+       arrhash.each do |hotel|
+          hotel =  new(hotel)
+          Besthotels::Scraper.get_info_of_each(hotel)
        end
     end
 
@@ -26,8 +27,9 @@ class Besthotels::Hotels
     end
 
     def self.find_by_rank(rank)
+
+       @@all.select { |i| 
         
-           @@all.select { |i| 
                  i.rank == rank  
             }    
     end

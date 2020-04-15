@@ -10,7 +10,7 @@ class Besthotels::CLI
   
      def self.menue 
          user= gets.chomp
-        if user == "Yes"
+        if user == "list"
          self.listhotel
          puts " Which hotel would you like to knows more about?:   "
          self.detailhotel(user)                         
@@ -55,11 +55,15 @@ class Besthotels::CLI
             puts "\n"            
             puts "Details".colorize(:blue) 
             puts "\n"
-            puts i.specific
+            if i.specific != ""
+               puts i.specific
+            end
             puts "\n\n"
             puts "Property Amenities".colorize(:blue) 
             puts "\n"
-            puts i.amenities
+            if i.amenities != ""
+               puts i.amenities
+            end
             puts "\n\n"
             if i.contact != ""
               puts "Call Us : #{i.contact}".colorize(:blue) 
