@@ -3,40 +3,66 @@ class Besthotels::Hotels
    
     @@all =[]
 
-    attr_accessor :hotel,:rank,:location,:url,:quotes ,:specific,:contact,:amenities 
-    def initialize(hotel)
-        assignattribute(hotel)
-       # self.specific = ""
-       # self.contact = ""
-       # self.amenities = ""
-        @@all << self        
+    attr_accessor :name,:rank,:location,:url,:quotes ,:specific,:contact,:amenities,:customers 
+    def initialize(name,specific=nil,contact =nil,amenities=nil,quotes=nil)
+        assignattribute(name)   
+        @customers=[]  
+        save  
+                
     end
 
-     
+          
     def self.new_hotel(arrhash)
-       arrhash.each do |hotel|
-          hotel =  new(hotel)
-          Besthotels::Scraper.get_info_of_each(hotel)
+       arrhash.each do |name|
+           new(name)
        end
+    end
+     
+
+    def save 
+      @@all << self 
     end
 
     def assignattribute(attr)
-     attr.each do |key,value|
-        self.send(("#{key}="),value)
-     end
+       attr.each do |key,value|
+          self.send(("#{key}="),value)
+       end
     end
 
     def self.find_by_rank(rank)
 
        @@all.select { |i| 
-        
                  i.rank == rank  
             }    
     end
 
     def self.all
-        @@all
+        @@all                       
     end
+
+    def add_customer(cusobj) 
+        cusobj.hotel = self if cusobj.hotel == nil          
+        @customers << cusobj   unless customers.include?cusobj
+       # cusobj.hotel = self if cusobj.hotel == nil   
+       
+       binding.pry
+         
+    end
+
+   def self.find_or_create_by_name(hotel)
+      if self.find_hotel(hotel)
+         self.find_hotel(hotel)
+      else
+         Besthotels::Hotels.new(hotel)
+      end
+   end
+
+   def self.find_hotel(hotel)
+     @@all.detect do |i|
+          i.hotel == hotel
+     end
+   end
 
 
 end
+
