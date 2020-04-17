@@ -2,7 +2,7 @@ class Besthotels::CLI
 
     def self.call
         puts "Welcome user"
-        puts "Type 'list' to list  2020 best hotels "
+        puts "Type 'list' to list  2020's best hotels "
         puts("To leave, type 'exit'.")
         puts("What would you like to do?")
         Besthotels::Scraper.make_hotel 
@@ -82,13 +82,22 @@ class Besthotels::CLI
             end
             puts "\n\n"
             if hotelobjarry[0].contact != ""
-              puts "Call Us : #{hotelobjarry[0].contact}".colorize(:blue) 
+              puts "Contact Number:  #{hotelobjarry[0].contact}"
             end
             puts "\n\n"  
-            puts "quotes of reviewer".colorize(:blue) 
+            puts "quotes".colorize(:blue) 
             puts "\n" 
             puts hotelobjarry[0].quotes
-
+            puts "\n" 
+            puts "Customers Review".colorize(:blue)             
+            hotelobjarry[0].customers.each do |i|
+              puts "\n"
+              puts i.name.colorize(:red) 
+              puts i.review
+              puts "\n" 
+            end
+        
+           
     end
 
   end

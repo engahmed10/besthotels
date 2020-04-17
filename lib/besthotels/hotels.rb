@@ -41,12 +41,9 @@ class Besthotels::Hotels
     end
 
     def add_customer(cusobj) 
-        cusobj.hotel = self if cusobj.hotel == nil          
+        cusobj.hotel = self if cusobj.hotel == nil                
         @customers << cusobj   unless customers.include?cusobj
-       # cusobj.hotel = self if cusobj.hotel == nil   
-       
-       binding.pry
-         
+        #cusobj.hotel = self if cusobj.hotel == nil        
     end
 
    def self.find_or_create_by_name(hotel)
