@@ -31,7 +31,7 @@ class Besthotels::CLI
   
      def  self.exit
       "See You"
-    end
+      end
 
     def self.invalid
           puts"invalid input ,please enter valid option"
@@ -40,8 +40,6 @@ class Besthotels::CLI
   
     def self.listhotel
       aa= Besthotels::Hotels.all 
-            
-  
       puts "\n\n"
       puts "----------------------------------------------------------------------------------------------------------------------------------------------------"
       puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Url".colorize(:black)   
