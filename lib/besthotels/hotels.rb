@@ -35,7 +35,7 @@ class Besthotels::Hotels
     end
      
     def self.prepare_to_list
-      Besthotels::Scraper.make_hotel
+      Besthotels::Scraper.script_all_hotels
     end
 
     def self.find_or_create_by_name(hotel)

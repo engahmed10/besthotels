@@ -4,17 +4,16 @@ class Besthotels::CLI
         puts "Welcome user"
         puts "Type 'list' to list  2020's best hotels "
         puts "Type any numbers between (1 ... 25) to see details of each hotel arranged by rank "
-        puts("To exit, type 'exit' or hit other keys to see more .")
+        puts "To exit, type 'exit' or hit other keys to see more ."
         puts "To see a customers review , Type customer's name ."
-        puts("What would you like to do?")  
+        puts "What would you like to do?" 
         Besthotels::Hotels.prepare_to_list   
-        #Besthotels::Scraper.make_hotel          
         menue
      end
   
      def menue 
          user= gets.chomp  
-         @@obj = Besthotels::Customer.find_by_name(user)         
+         @obj = Besthotels::Customer.find_by_name(user)         
         if user == "list"
            listhotel
            puts " Which hotel would you like to knows more about? ,type rank of hotel:"                        
@@ -22,7 +21,7 @@ class Besthotels::CLI
         elsif user.to_i.between?(1,25)
           detailhotel(user)
            menue
-        elsif  @@obj.length != 0
+        elsif  @obj.length != 0
            customer_review
            menue     
         elsif user == "exit"
@@ -58,8 +57,7 @@ class Besthotels::CLI
     def detailhotel(user)
 
             hotelobjarry = Besthotels::Hotels.find_by_rank(user)
-            Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    #because it  returns array 
-
+            Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    
             puts "\n\n"  
             puts hotelobjarry[0].name
             puts "\n"            
@@ -89,11 +87,11 @@ class Besthotels::CLI
             puts "To see a review of each customer, Type customer's name shown above, or hit other keys for other events."
     end
 
-   def  customer_review
+    def  customer_review
       puts "\n"
-      puts "#{@@obj[0].name}  review "
+      puts "#{@obj[0].name}  review "
       puts "\n"
-      puts @@obj[0].review
-   end
+      puts @obj[0].review
+    end
 
   end

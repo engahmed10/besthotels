@@ -3,7 +3,7 @@ class Besthotels::Scraper
      SITE = "https://www.tripadvisor.com/TravelersChoice-Hotels"
    
 
-    def self.make_hotel
+  def self.script_all_hotels
       
       doc = Nokogiri::HTML(open(SITE))
       hotels= doc.css("#WINNERVIEWER div.winnerLayer")
@@ -16,7 +16,13 @@ class Besthotels::Scraper
        url: "https://www.tripadvisor.com"+i.css("div.winnerName div.mainName.extra a").attribute('href').value
        }   
       end
-       Besthotels::Hotels.new_hotel(hotel_hashes)
+      
+      self.make_hotel(hotel_hashes)
+       #Besthotels::Hotels.new_hotel(hotel_hashes)
+  end
+
+  def self.make_hotel(hotel_hashes)
+    Besthotels::Hotels.new_hotel(hotel_hashes)
   end
 
   def self.get_info_of_each(hotelobj)
