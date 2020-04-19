@@ -3,26 +3,22 @@ class Besthotels::Hotels
    
     @@all =[]
     attr_accessor :name,:rank,:location,:url,:quotes ,:specific,:contact,:amenities,:customers 
-    def initialize(name,specific=nil,contact =nil,amenities=nil,quotes=nil)
-        assignattribute(name)   
+    def initialize(hotelsattr,specific=nil,contact =nil,amenities=nil,quotes=nil)
+        assignattribute(hotelsattr)   
         @customers=[]  
         save                 
     end
 
     def self.new_hotel(arrhash)
-       arrhash.each do |name|
-           new(name)
-       end
+       arrhash.each { |hotelsattr| new(hotelsattr) }
     end
    
     def save 
-      @@all << self 
+       @@all << self 
     end
 
     def assignattribute(hotel)
-       hotel.each do |key,value|
-          self.send(("#{key}="),value)
-       end
+       hotel.each { |key,value| self.send(("#{key}="),value) }
     end
 
     def self.find_by_rank(rank)     
@@ -35,8 +31,11 @@ class Besthotels::Hotels
 
     def add_customer(cusobj) 
         cusobj.hotel = self if cusobj.hotel == nil                
-        @customers << cusobj   unless customers.include?cusobj
-        #cusobj.hotel = self if cusobj.hotel == nil        
+        @customers << cusobj  unless customers.include?cusobj      
+    end
+     
+    def self.prepare_to_list
+      Besthotels::Scraper.make_hotel
     end
 
     def self.find_or_create_by_name(hotel)
@@ -49,7 +48,7 @@ class Besthotels::Hotels
 
     def self.find_hotel(hotel)
        @@all.detect do |i|
-          i.hotel == hotel
+          i.name == hotel
        end
     end
 

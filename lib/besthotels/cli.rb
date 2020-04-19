@@ -1,44 +1,47 @@
 class Besthotels::CLI 
 
-    def self.call
+    def call
         puts "Welcome user"
         puts "Type 'list' to list  2020's best hotels "
-        puts("To leave, type 'exit'.")
-        puts("What would you like to do?")
-        Besthotels::Scraper.make_hotel 
-        Besthotels::Scraper.add_more_attr                  
-        self.menue
+        puts "Type any numbers between (1 ... 25) to see details of each hotel arranged by rank "
+        puts("To exit, type 'exit' or hit other keys to see more .")
+        puts "To see a customers review , Type customer's name ."
+        puts("What would you like to do?")  
+        Besthotels::Hotels.prepare_to_list   
+        #Besthotels::Scraper.make_hotel          
+        menue
      end
   
-     def self.menue 
-         user= gets.chomp
-         
+     def menue 
+         user= gets.chomp  
+         @@obj = Besthotels::Customer.find_by_name(user)         
         if user == "list"
-           self.listhotel
-         puts " Which hotel would you like to knows more about? ,type rank of hotel:"
-           user= gets.chomp
-           self.detailhotel(user)                         
-           self.menue 
+           listhotel
+           puts " Which hotel would you like to knows more about? ,type rank of hotel:"                        
+           menue 
         elsif user.to_i.between?(1,25)
-          self.detailhotel(user)
-          self.menue
+          detailhotel(user)
+           menue
+        elsif  @@obj.length != 0
+           customer_review
+           menue     
         elsif user == "exit"
-            self.exit
+           exit
         else
-          self.invalid       
+          invalid       
         end
      end
   
-     def  self.exit
+     def  exit
       "See You"
       end
 
-    def self.invalid
+    def   invalid
           puts"invalid input ,please enter valid option"
           self.menue
     end
   
-    def self.listhotel
+    def listhotel
       aa= Besthotels::Hotels.all 
       puts "\n\n"
       puts "----------------------------------------------------------------------------------------------------------------------------------------------------"
@@ -48,21 +51,14 @@ class Besthotels::CLI
           puts "#{i+1}. #{hotel.name.upcase}".colorize(:blue) + " | " +  "#{hotel.location} ".colorize(:green) + " | " +  "#{hotel.url} ".colorize(:black)    
           puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
         end
-        puts "\n\n"
+      puts "\n\n"
         
     end
 
-    def self.detailhotel(user)
+    def detailhotel(user)
 
-      # Besthotels::Hotels.find_by_rank(user).each do |i| 
-   
-     #hotelobj = Besthotels::Hotels.all[user.to_i-1]   
-     #Besthotels::Hotels.pass_object(i)  
-     
-     #binding.pry
-
-     hotelobjarry = Besthotels::Hotels.find_by_rank(user)
-     Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    #because it  returns array 
+            hotelobjarry = Besthotels::Hotels.find_by_rank(user)
+            Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    #because it  returns array 
 
             puts "\n\n"  
             puts hotelobjarry[0].name
@@ -80,22 +76,24 @@ class Besthotels::CLI
             end
             puts "\n\n"
             if hotelobjarry[0].contact != ""
-              puts "Contact Number:  #{hotelobjarry[0].contact}"
+              puts "Contact Number: ".colorize(:blue) 
+              puts "#{hotelobjarry[0].contact}"
             end
             puts "\n\n"  
-            puts "quotes".colorize(:blue) 
-            puts "\n" 
-            puts hotelobjarry[0].quotes
-            puts "\n" 
-            puts "Customers Review".colorize(:blue)             
-            hotelobjarry[0].customers.each do |i|
+            puts "Customers Name".colorize(:blue) 
+            hotelobjarry[0].customers.each do |c|
               puts "\n"
-              puts i.name.colorize(:red) 
-              puts i.review
-              puts "\n" 
-            end
-        
-           
+              puts "#{c.name}".colorize(:red)
+            end          
+            hotelobjarry[0].customers.clear
+            puts "To see a review of each customer, Type customer's name shown above, or hit other keys for other events."
     end
+
+   def  customer_review
+      puts "\n"
+      puts "#{@@obj[0].name}  review "
+      puts "\n"
+      puts @@obj[0].review
+   end
 
   end

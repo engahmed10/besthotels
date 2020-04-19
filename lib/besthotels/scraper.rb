@@ -10,30 +10,14 @@ class Besthotels::Scraper
      
       hotel_hashes=hotels.map do |i|   
       {
-       rank: i.css("div.posn > span").text,
+       rank: i.css("div.posn  span").text,
        name: i.css("div.winnerName div.mainName.extra a").text,
        location: i.css("div.winnerName div.smaller a").text,
        url: "https://www.tripadvisor.com"+i.css("div.winnerName div.mainName.extra a").attribute('href').value
        }   
       end
-
        Besthotels::Hotels.new_hotel(hotel_hashes)
-
   end
-
-  def self.add_more_attr
-      doc = Nokogiri::HTML(open(SITE))
-      aa = doc.css("#WINNERVIEWER div.misc.posRel").css("div").css("ul").css("li")
-       arr=[]
-      aa.map do |i|    
-         arr << i.css("div").text.strip  
-      end 
-      Besthotels::Hotels::all.each_with_index do |i,index|
-         i.quotes = arr[index] 
-      end   
-  end 
-  
-
 
   def self.get_info_of_each(hotelobj)
       
@@ -45,12 +29,12 @@ class Besthotels::Scraper
       hotelobj.specific = spec  
       hotelobj.contact =  cont  
       hotelobj.amenities = ameni  
-      #getting customer and review ,then make new instance
+      #getting customers and reviews ,then make new instance of customer object
       aa=doc.css("#component_13 > div > div:nth-child(3)  div.hotels-community-tab-common-Card__card--ihfZB.hotels-community-tab-common-Card__section--4r93H")
       aa.each do |i|
-           customer_n= i.css("div.social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx > div > div.social-member-event-MemberEventOnObjectBlock__event_type--3njyv > span > a").text
+           customer_name= i.css("div.social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx > div > div.social-member-event-MemberEventOnObjectBlock__event_type--3njyv > span > a").text
            review= i.css("div.cPQsENeY > q").text
-           cusobj=Besthotels::Customer.new(customer_n,review)
+           cusobj=Besthotels::Customer.new(customer_name,review)
            hotelobj.add_customer(cusobj)
       end
   end

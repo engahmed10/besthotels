@@ -3,4 +3,4 @@
 require_relative "../lib/besthotels" 
 
 
-Besthotels::CLI.call
+Besthotels::CLI.new.call
