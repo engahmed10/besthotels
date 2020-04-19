@@ -44,10 +44,10 @@ class Besthotels::CLI
       aa= Besthotels::Hotels.all 
       puts "\n\n"
       puts "----------------------------------------------------------------------------------------------------------------------------------------------------"
-      puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Url".colorize(:black)   
+      puts "Hotel Name".colorize(:blue) + "                                  Location".colorize(:green) + "                             Website Url"   
       puts " ---------------------------------------------------------------------------------------------------------------------------------------------------"       
         aa.each_with_index do |hotel,i|
-          puts "#{i+1}. #{hotel.name.upcase}".colorize(:blue) + " | " +  "#{hotel.location} ".colorize(:green) + " | " +  "#{hotel.url} ".colorize(:black)    
+          puts "#{i+1}. #{hotel.name.upcase}".colorize(:blue) + " | " +  "#{hotel.location} ".colorize(:green) + " | " +  "#{hotel.url} "  
           puts "-------------------------------------------------------------------------------------------------------------------------------------------------"
         end
       puts "\n\n"
