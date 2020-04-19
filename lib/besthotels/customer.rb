@@ -13,20 +13,13 @@ class Besthotels::Customer
        @@all << self
      end
 
-    # def hotel(hotel)
-     #   self.hotel = Besthotels::Hotels.find_or_create_by_name(hotel)       
-      #  self.hotel.add_customer(self)
-    #end
-
-      def self.find_by_name(name) 
-        @@all.select do |i|
-          i.name == name
-        end
-      end
+    def self.find_by_name(name) 
+       @@all.select { |i| i.name == name }
+    end
  
-      def self.all
-          @@all
-      end
+    def self.all
+       @@all
+    end
 
 end
 

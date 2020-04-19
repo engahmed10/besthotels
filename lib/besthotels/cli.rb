@@ -9,9 +9,9 @@ class Besthotels::CLI
         puts "What would you like to do?" 
         Besthotels::Hotels.prepare_to_list   
         menue
-     end
+    end
   
-     def menue 
+    def menue 
          user= gets.chomp  
          @obj = Besthotels::Customer.find_by_name(user)         
         if user == "list"
@@ -29,13 +29,13 @@ class Besthotels::CLI
         else
           invalid       
         end
-     end
+    end
   
-     def  exit
+    def  exit
       "See You"
-      end
+    end
 
-    def   invalid
+    def  invalid
           puts"invalid input ,please enter valid option"
           self.menue
     end
@@ -94,4 +94,4 @@ class Besthotels::CLI
       puts @obj[0].review
     end
 
-  end
+end
