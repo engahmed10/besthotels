@@ -2,8 +2,8 @@ class Besthotels::CLI
 
     def call
         puts "Welcome user"
-        puts "Type 'list' to list  2020's best hotels "
-        puts "Type any numbers between (1 ... 25) to see details of each hotel arranged by rank "
+        puts "Type 'list' to list  2020's best hotels . "
+        puts "Type any numbers between (1 ... 25) to see details of each hotel arranged by rank ."
         puts "To exit, type 'exit' or hit other keys to see more ."
         puts "To see a customers review , Type customer's name ."
         puts "What would you like to do?" 
@@ -15,29 +15,29 @@ class Besthotels::CLI
          user= gets.chomp  
          @obj = Besthotels::Customer.find_by_name(user)         
         if user == "list"
-           listhotel
-           puts " Which hotel would you like to knows more about? ,type rank of hotel:"                        
-           menue 
+          listhotel
+          puts " Which hotel would you like to knows more about? ,type rank of hotel:"                        
+          menue 
         elsif user.to_i.between?(1,25)
           detailhotel(user)
-           menue
+          menue
         elsif  @obj.length != 0
-           customer_review
-           menue     
+          customer_review
+          menue     
         elsif user == "exit"
-           exit
+          exit
         else
           invalid       
         end
     end
   
     def  exit
-      "See You"
+      puts "See You"
     end
 
     def  invalid
-          puts"invalid input ,please enter valid option"
-          self.menue
+      puts"invalid input ,please enter valid option"
+      self.menue
     end
   
     def listhotel

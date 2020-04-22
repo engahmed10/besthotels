@@ -11,7 +11,6 @@ require 'colorize'
 
 
 module Besthotels
-  class Error < StandardError;  end
   # Your code goes here...
 end
 
