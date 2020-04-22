@@ -30,7 +30,7 @@ class Besthotels::Hotels
     end
 
     def add_customer(cusobj) 
-      cusobj.hotel = self if cusobj.hotel == nil                
+        cusobj.hotel = self if cusobj.hotel == nil                
         @customers << cusobj  unless customers.include?cusobj      
     end
      

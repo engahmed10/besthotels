@@ -55,36 +55,35 @@ class Besthotels::CLI
     end
 
     def detailhotel(user)
-
-            hotelobjarry = Besthotels::Hotels.find_by_rank(user)
-            Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    
-            puts "\n\n"  
-            puts hotelobjarry[0].name
-            puts "\n"            
-            puts "Details".colorize(:blue) 
+          hotelobjarry = Besthotels::Hotels.find_by_rank(user)
+          Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    
+          puts "\n\n"  
+          puts hotelobjarry[0].name
+          puts "\n"            
+          puts "Details".colorize(:blue) 
+          puts "\n"
+          if hotelobjarry[0].specific != ""
+            puts hotelobjarry[0].specific
+          end
+          puts "\n\n"
+          puts "Property Amenities".colorize(:blue) 
+          puts "\n"
+          if hotelobjarry[0].amenities != ""
+            puts hotelobjarry[0].amenities
+          end
+          puts "\n\n"
+          if hotelobjarry[0].contact != ""
+            puts "Contact Number: ".colorize(:blue) 
+            puts "#{hotelobjarry[0].contact}"
+          end
+          puts "\n\n"  
+          puts "Customers Name".colorize(:blue) 
+          hotelobjarry[0].customers.each do |c|
             puts "\n"
-            if hotelobjarry[0].specific != ""
-              puts hotelobjarry[0].specific
-            end
-            puts "\n\n"
-            puts "Property Amenities".colorize(:blue) 
-            puts "\n"
-            if hotelobjarry[0].amenities != ""
-               puts hotelobjarry[0].amenities
-            end
-            puts "\n\n"
-            if hotelobjarry[0].contact != ""
-              puts "Contact Number: ".colorize(:blue) 
-              puts "#{hotelobjarry[0].contact}"
-            end
-            puts "\n\n"  
-            puts "Customers Name".colorize(:blue) 
-            hotelobjarry[0].customers.each do |c|
-              puts "\n"
-              puts "#{c.name}".colorize(:red)
-            end          
-            hotelobjarry[0].customers.clear
-            puts "To see a review of each customer, Type customer's name shown above, or hit other keys for other events."
+            puts "#{c.name}".colorize(:red)
+          end          
+          hotelobjarry[0].customers.clear
+          puts "To see a review of each customer, Type customer's name shown above, or hit other keys for other events."
     end
 
     def  customer_review
