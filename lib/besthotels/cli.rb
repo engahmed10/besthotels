@@ -55,6 +55,7 @@ class Besthotels::CLI
     end
 
     def detailhotel(user)
+
           hotelobjarry = Besthotels::Hotels.find_by_rank(user)
           Besthotels::Scraper.get_info_of_each(hotelobjarry[0])    
           puts "\n\n"  
