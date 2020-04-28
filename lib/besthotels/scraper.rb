@@ -14,7 +14,7 @@ class Besthotels::Scraper
        name: i.css("div.winnerName div.mainName.extra a").text,
        location: i.css("div.winnerName div.smaller a").text,
        url: "https://www.tripadvisor.com"+i.css("div.winnerName div.mainName.extra a").attribute('href').value
-       }   
+      }   
       end    
       self.make_hotel(hotel_hashes)
   end
@@ -37,10 +37,10 @@ class Besthotels::Scraper
       hotelobj.amenities = property 
       customer=doc.css("#component_13 > div > div:nth-child(3)  div.hotels-community-tab-common-Card__card--ihfZB.hotels-community-tab-common-Card__section--4r93H")
       customer.each do |i|
-          customer_name= i.css("div.social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx > div > div.social-member-event-MemberEventOnObjectBlock__event_type--3njyv > span > a").text
-          review= i.css("div.cPQsENeY > q").text
-          cusobj=Besthotels::Customer.new(customer_name,review)
-          hotelobj.add_customer(cusobj)
+        customer_name= i.css("div.social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx > div > div.social-member-event-MemberEventOnObjectBlock__event_type--3njyv > span > a").text
+        review= i.css("div.cPQsENeY > q").text
+        cusobj=Besthotels::Customer.new(customer_name,review)
+        hotelobj.add_customer(cusobj)
       end
   end
 end

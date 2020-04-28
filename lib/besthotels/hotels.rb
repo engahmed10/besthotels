@@ -13,6 +13,10 @@ class Besthotels::Hotels
       arrhash.each { |hotel| new(hotel) }
     end
    
+    def self.sortrank
+      @@all.sort_by { |hotel| hotel.rank }
+    end
+
     def save 
        @@all << self 
     end
