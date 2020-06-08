@@ -35,12 +35,12 @@ class Besthotels::Scraper
       hotelobj.specific = spec  
       hotelobj.contact =  cont  
       hotelobj.amenities = property 
-      customer=doc.css("#component_13 > div > div:nth-child(3)  div.hotels-community-tab-common-Card__card--ihfZB.hotels-community-tab-common-Card__section--4r93H")
+      customer=doc.css("#component_14 > div > div:nth-child(3)  div.hotels-community-tab-common-Card__card--ihfZB.hotels-community-tab-common-Card__section--4r93H")
       customer.each do |i|
         customer_name= i.css("div.social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx > div > div.social-member-event-MemberEventOnObjectBlock__event_type--3njyv > span > a").text
         review= i.css("div.cPQsENeY > q").text
-        cusobj=Besthotels::Customer.new(customer_name,review)
-        hotelobj.add_customer(cusobj)
+        cus_obj=Besthotels::Customer.new(customer_name,review)
+          hotelobj.add_customer(cus_obj)
       end
   end
 end

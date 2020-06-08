@@ -1,7 +1,7 @@
 class Besthotels::CLI 
 
     def call
-        puts "Welcome user"
+        puts "Welcome User!"
         puts "Type 'list' to list  2020's best hotels . "
         puts "Type any numbers between (1 ... 25) to see details of each hotel arranged by rank ."
         puts "To exit, type 'exit' or hit other keys to see more ."
